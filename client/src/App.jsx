@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import Welcome from "./pages/Welcome/Welcome";
@@ -10,7 +9,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Welcome />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/auth/signup" element={<Auth />} />
+        <Route path="/auth" element={<Auth />} />
       </Routes>
     </>
   );
