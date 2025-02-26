@@ -30,6 +30,7 @@
         margin-top: 120px;
         font-weight: 900;
         font-size: 35px;
+        margin-bottom: 50px;
       }
       .input {
         width: 400px;
@@ -41,7 +42,6 @@
         font-size: 17px;
         padding: 2px 10px;
         font-weight: 700;
-        margin-top: 50px;
       }
       .input::placeholder {
         color: rgba(255, 145, 0, 0.5);
@@ -58,12 +58,10 @@
         position: absolute;
         top: 55%;
         text-underline-offset: 5px;
-        transition: 0.2s;
       }
 
       .formChanger:hover {
         color: rgb(255, 145, 0);
-        transition: 0.2s;
       }
 
       .button {
@@ -85,6 +83,13 @@
       .button:hover {
         border-radius: 20px;
         transition: 0.2s ease-in-out;
+      }
+      .error {
+        color: red;
+        font-size: 15px;
+        font-weight: 200;
+        position: absolute;
+        top: 68%;
       }
     }
   }

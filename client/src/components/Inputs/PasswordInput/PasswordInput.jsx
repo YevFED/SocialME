@@ -3,7 +3,7 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa6";
 import styles from "./PasswordInput.module.scss";
 
-const PasswordInput = ({ placehldr }) => {
+const PasswordInput = ({ placehldr, password, setPassword }) => {
   const [Hide, SetHide] = useState(true);
 
   const checkPass = () => {
@@ -16,6 +16,8 @@ const PasswordInput = ({ placehldr }) => {
         className={styles.input}
         placeholder={placehldr}
         maxLength={24}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
       {Hide ? (
         <FaEyeSlash

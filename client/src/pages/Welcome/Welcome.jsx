@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Welcome.module.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -11,9 +11,9 @@ const Welcome = () => {
 
         <div className={styles.circle}></div>
         <div className={styles.circle2}></div>
-        <button onClick={() => navigate("/auth")} className={styles.button}>
+        <Link to="/auth" className={styles.button}>
           Let's Started
-        </button>
+        </Link>
       </div>
     </>
   );
