@@ -1,5 +1,22 @@
-import express from "express";
-
+import express, { json } from "express";
+import cors from "cors";
+import authRoutes from "./routes/auth.route.js";
+import dotenv from "dotenv";
+import { connectDB } from "./lib/db.js";
+dotenv.config();
 const app = express();
 
-app.listen(5001, () => console.log("Server Started on Port 5001"));
+const PORT = process.env.PORT;
+
+dotenv.config();
+
+app.use(cors());
+
+app.use(json());
+
+app.use("/api/auth", authRoutes);
+
+app.listen(PORT, () => {
+  console.log(`server started on port: ` + PORT);
+  connectDB();
+});
