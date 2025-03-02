@@ -41,8 +41,35 @@ export const signup = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
-  res.send("lets login");
+export const login = async (req, res) => {
+  const { email, password, fullName } = req.body;
+
+  try {
+    const user =
+      (await User.findOne({ email })) || (await User.findOne({ fullName }));
+
+    if (!user && !fullName) {
+      return res.status(400).json({ message: "Incorrect email or password" });
+    }
+
+    if (!user && !email) {
+      return res
+        .status(400)
+        .json({ message: "Incorrect fullname or password" });
+    }
+
+    const matchPass = await bcrypt.compare(password, user.password);
+
+    if (!matchPass) {
+      return res.status(400).json({ message: "Incorrect email or password" });
+    }
+
+    const token = generateToken(user._id, res);
+
+    return res.status(201).json({ message: "User loggined " + token });
+  } catch (error) {
+    console.log(error);
+  }
 };
 export const logout = (req, res) => {
   res.send("lets logout");

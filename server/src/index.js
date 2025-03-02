@@ -12,7 +12,7 @@ dotenv.config();
 
 app.use(cors());
 
-app.use(json());
+app.use(express.json());
 
 app.use("/api/auth", authRoutes);
 
