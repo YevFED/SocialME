@@ -2,9 +2,15 @@ import React, { useState } from "react";
 import styles from "./Auth.module.scss";
 import PasswordInput from "../../components/Inputs/PasswordInput/PasswordInput";
 import { emailValidator } from "../../utils/emailvalidator.js";
+import axiosIntance from "../../axiosIntance.js";
+
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
+
+  const [ByEmail, setByEmail] = useState(true);
 
   // States
   const [fullName, setFullName] = useState("");
@@ -49,6 +55,24 @@ const SignUp = () => {
     setErrors("");
   };
 
+  const handleLogIn = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axiosIntance.post("/api/auth/login", {
+        email: email,
+        fullName: fullName,
+        password: password,
+      });
+      if (response.data && response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        console.log("Logined");
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.leftSide}>
@@ -61,6 +85,7 @@ const SignUp = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
+
             <input
               className={styles.input}
               type="text"
@@ -83,14 +108,31 @@ const SignUp = () => {
             </button>
           </form>
         ) : (
-          <form action="" className={styles.form}>
+          <form action="" className={styles.form} onSubmit={handleLogIn}>
             <p className={styles.formTitle}>Log in in your account</p>
-            <input
-              className={styles.input}
-              placeholder="Type your email : "
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+
+            {ByEmail ? (
+              <input
+                className={styles.input}
+                placeholder="Type your email : "
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            ) : (
+              <input
+                className={styles.input}
+                placeholder="Type your fullname : "
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+              />
+            )}
+
+            <p
+              className={styles.logInChanger}
+              onClick={() => setByEmail(!ByEmail)}
+            >
+              {ByEmail ? "Log in with fullname" : "Log in with email"}
+            </p>
             <PasswordInput
               placehldr={"Type your password :"}
               password={password}
@@ -100,7 +142,13 @@ const SignUp = () => {
             <p className={styles.formChanger} onClick={changeAuth}>
               Don't have account ?
             </p>
-            <button className={styles.button}>Log in</button>
+            <button
+              className={styles.button}
+              type="submit"
+              onClick={handleLogIn}
+            >
+              Log in
+            </button>
           </form>
         )}
       </div>

@@ -1,6 +1,7 @@
 import { generateToken } from "../lib/utils.js";
 import User from "../models/user.models.js";
 import bcrypt from "bcrypt";
+
 export const signup = async (req, res) => {
   const { fullName, email, password } = req.body;
 
@@ -43,7 +44,6 @@ export const signup = async (req, res) => {
 
 export const login = async (req, res) => {
   const { email, password, fullName } = req.body;
-
   try {
     const user =
       (await User.findOne({ email })) || (await User.findOne({ fullName }));
@@ -66,11 +66,24 @@ export const login = async (req, res) => {
 
     const token = generateToken(user._id, res);
 
-    return res.status(201).json({ message: "User loggined " + token });
+    return res.status(200).json({
+      message: "User loggined ",
+      token: token,
+      email: email,
+      fullName: fullName,
+    });
   } catch (error) {
     console.log(error);
   }
 };
-export const logout = (req, res) => {
-  res.send("lets logout");
+
+export const logout = (req, res, localStorage) => {
+  try {
+    res.cookie("jwt", "", { maxAge: 0 });
+    res.status(200).json({ message: "Log out success" });
+    localStorage();
+  } catch (error) {
+    console.log("Error with loging out " + error.message);
+    res.status(500).json({ message: "U already loged out" });
+  }
 };
