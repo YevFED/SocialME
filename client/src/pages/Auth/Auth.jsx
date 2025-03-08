@@ -7,6 +7,7 @@ import axiosIntance from "../../axiosIntance.js";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
+  // Navigation on pages
   const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
 
@@ -30,6 +31,7 @@ const SignUp = () => {
   };
 
   //Function to signup
+
   const handleSignup = async (e) => {
     e.preventDefault();
 
@@ -53,7 +55,30 @@ const SignUp = () => {
     }
 
     setErrors("");
+
+    try {
+      const response = await axiosIntance.post("/api/auth/signup", {
+        fullName: fullName,
+        email: email,
+        password: password,
+      });
+
+      if (response.data && response.data.error) {
+        console.log(response.data.error);
+        return;
+      }
+
+      if (response.data && response.data.token) {
+        localStorage.setItem("token", response.data.token);
+        console.log("Created " + response.data.token);
+        navigate("/home");
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  // Log in function
 
   const handleLogIn = async (e) => {
     e.preventDefault();
@@ -70,6 +95,11 @@ const SignUp = () => {
       }
     } catch (error) {
       console.log(error);
+      if (ByEmail) {
+        setErrors("Wrong email or password ");
+      } else {
+        setErrors("Wrong fullname or password ");
+      }
     }
   };
 
@@ -77,7 +107,7 @@ const SignUp = () => {
     <div className={styles.wrapper}>
       <div className={styles.leftSide}>
         {Auth ? (
-          <form action="" className={styles.form}>
+          <form action="" className={styles.form} onSubmit={handleSignup}>
             <p className={styles.formTitle}>Let's create a new account</p>
             <input
               className={styles.input}

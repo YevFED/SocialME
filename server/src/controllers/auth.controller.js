@@ -30,10 +30,12 @@ export const signup = async (req, res) => {
     if (newUser) {
       //JWT Token creating
 
-      generateToken(newUser._id, res);
+      const token = generateToken(newUser._id, res);
       await newUser.save();
 
-      return res.status(201).json({ newUser });
+      return res
+        .status(201)
+        .json({ message: "User sign uped", newUser, token });
     } else {
       return res.status(400).json({ massage: "Eternal server error" });
     }

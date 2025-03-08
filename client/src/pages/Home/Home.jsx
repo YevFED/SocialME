@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axiosIntance from "../../axiosIntance.js";
 
 const Home = () => {
+  // Checking if user is logined
   const tokenCheck = () => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -10,6 +11,7 @@ const Home = () => {
     }
   };
 
+  // Log out funct
   const navigate = useNavigate();
   const handleLogout = async () => {
     try {
