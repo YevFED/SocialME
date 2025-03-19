@@ -1,18 +1,15 @@
 import React from "react";
 import styles from "./Header.module.scss";
-import { MdAccountCircle } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { GiHamburgerMenu } from "react-icons/gi";
 
-const Header = () => {
-  const navigate = useNavigate();
-
+const Header = ({ Open, setOpen }) => {
   return (
     <div className={styles.header}>
       <p className={styles.logo}>SocialME</p>
-      <MdAccountCircle
+      <GiHamburgerMenu
         className={styles.icon}
-        size={30}
-        onClick={() => navigate("/auth")}
+        size={40}
+        onClick={() => setOpen(!Open)}
       />
     </div>
   );

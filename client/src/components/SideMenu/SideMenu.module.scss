@@ -1,0 +1,46 @@
+.sideMenuActive {
+  width: 25%;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(245, 145, 0);
+  left: 75%;
+  z-index: 3;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 10%;
+  flex-direction: column;
+  .text {
+    color: rgb(40, 40, 40);
+  }
+  .closeButton {
+    position: absolute;
+    top: 2.5%;
+    left: 85%;
+    cursor: pointer;
+    fill: rgb(40, 40, 40);
+  }
+  .logOutButton {
+    cursor: pointer;
+  }
+}
+
+.sideMenu {
+  width: 25%;
+  height: 100vh;
+  position: absolute;
+  background-color: rgb(40, 40, 40);
+  left: 100%;
+  z-index: 33;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .closeButton {
+    position: absolute;
+    top: 2.5%;
+    left: 85%;
+    cursor: pointer;
+  }
+}

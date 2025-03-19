@@ -1,8 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosIntance from "../../axiosIntance.js";
+import Header from "../../components/Header/Header.jsx";
+import styles from "./Home.module.scss";
+import SideMenu from "../../components/SideMenu/SideMenu.jsx";
 
 const Home = () => {
+  const [Open, setOpen] = useState(false);
+
   // Checking if user is logined
   const tokenCheck = () => {
     const token = localStorage.getItem("token");
@@ -13,22 +18,20 @@ const Home = () => {
 
   // Log out funct
   const navigate = useNavigate();
-  const handleLogout = async () => {
-    try {
-      await axiosIntance.post("/api/auth/logout", {
-        localStorage: localStorage.clear(),
-      });
-      return navigate("/auth");
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  };
 
   useEffect(() => {
     tokenCheck();
   }, []);
 
-  return <button onClick={handleLogout}>Home</button>;
+  return (
+    <>
+      <Header Open={Open} setOpen={setOpen} />
+      <SideMenu Open={Open} setOpen={setOpen} />
+      <div className={styles.wrapper}>
+        <p>Will be chat window</p>
+      </div>
+    </>
+  );
 };
 
 export default Home;

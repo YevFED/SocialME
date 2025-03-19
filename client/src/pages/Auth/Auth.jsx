@@ -6,7 +6,7 @@ import axiosIntance from "../../axiosIntance.js";
 
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
+const Auth = () => {
   // Navigation on pages
   const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
@@ -188,4 +188,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default Auth;

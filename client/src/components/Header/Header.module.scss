@@ -1,18 +1,20 @@
 .header {
   width: 100vw;
   height: 100px;
-  background-color: rgb(245, 145, 0);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 50px;
+  z-index: 3;
+  position: absolute;
+  background-color: rgb(40, 40, 40);
   .logo {
     font-size: 32px;
     font-weight: 900;
-    background-color: transparent;
+    color: rgb(245, 145, 0);
   }
   .icon {
-    background-color: transparent;
-    fill: rgb(40, 40, 40);
+    fill: orange;
     cursor: pointer;
   }
 }

@@ -1,0 +1,13 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(40, 40, 40);
+  color: orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  p {
+    color: orange;
+  }
+}
