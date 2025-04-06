@@ -1,9 +1,7 @@
 import User from "../models/user.models.js";
 
 export const getUser = async (req, res) => {
-  const { user } = req.user;
-
-  const isUser = await User.findOne({ _id: user._id });
+  const isUser = await User.findOne({ _id: req.user._id });
 
   if (!isUser) {
     return res.status(401);

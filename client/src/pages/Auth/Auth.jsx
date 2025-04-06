@@ -5,11 +5,13 @@ import { emailValidator } from "../../utils/emailvalidator.js";
 import axiosIntance from "../../axiosIntance.js";
 
 import { useNavigate } from "react-router-dom";
+import { useSession } from "../../../context/AuthContext.jsx";
 
 const Auth = () => {
   // Navigation on pages
   const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
+  const { user } = useSession();
 
   // States
   const [fullName, setFullName] = useState("");
@@ -19,6 +21,7 @@ const Auth = () => {
   // Errors
   const [errors, setErrors] = useState(null);
 
+  if (user) navigate("/home");
   // Form changer
   const changeAuth = () => {
     setAuth(!Auth);

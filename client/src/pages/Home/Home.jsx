@@ -5,10 +5,12 @@ import Header from "../../components/Header/Header.jsx";
 import styles from "./Home.module.scss";
 import SideMenu from "../../components/SideMenu/SideMenu.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
+import { useSession } from "../../../context/AuthContext.jsx";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Open, setOpen] = useState(false);
+  const user = useSession();
 
   // Checking if user is logined
   const tokenCheck = () => {

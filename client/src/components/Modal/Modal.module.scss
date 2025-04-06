@@ -23,8 +23,9 @@
       display: flex;
       align-items: center;
       flex-direction: column;
+      justify-content: center;
+      gap: 20px;
       .profilePhoto {
-        margin-top: 150px;
         width: 250px;
         height: 250px;
         border-radius: 50%;
@@ -38,7 +39,6 @@
         width: 30%;
         height: 50px;
         background-color: rgba(40, 40, 40);
-        margin-top: 50px;
         text-align: center;
         border: 0px;
         outline: none;

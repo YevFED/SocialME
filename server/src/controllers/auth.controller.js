@@ -81,3 +81,16 @@ export const logout = (req, res) => {
     res.status(500).json({ message: "U already loged out" });
   }
 };
+
+export const editUser = async (req, res) => {
+  const { newName, newEmail } = req.body;
+
+  const user = await User.findOne({ _id: req.user._id });
+
+  await User.updateOne(
+    { email: user.email },
+    { $set: { fullName: newName, email: newEmail } }
+  );
+
+  return res.status(200).json({ success: true });
+};

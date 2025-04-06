@@ -2,25 +2,18 @@ import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
 import axiosIntance from "../../axiosIntance";
+import { useSession } from "../../../context/AuthContext";
 const Modal = ({ openModal, setOpenModal }) => {
+  const { user, edit, loading } = useSession();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const getUserInfo = async () => {
-    try {
-      const response = await axiosIntance.get("/api/user/getuser");
-
-      if (response.data && response.data.user) {
-        setFullName(response.data.user.fullName);
-        setEmail(response.data.user.email);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
 
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    if (user) {
+      setFullName(user.fullName);
+      setEmail(user.email);
+    }
+  }, [user]);
 
   return (
     <div
@@ -47,6 +40,12 @@ const Modal = ({ openModal, setOpenModal }) => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
+          <button
+            onClick={() => edit(fullName, email)}
+            disabled={loading || user.fullName === fullName}
+          >
+            Submit
+          </button>
         </div>
       </div>
     </div>

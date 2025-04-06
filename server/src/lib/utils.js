@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user.models.js";
 
-function authenticateToken(req, res, next) {
+async function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
@@ -9,9 +10,16 @@ function authenticateToken(req, res, next) {
     return res.status(401);
   }
 
-  jwt.verify(token, process.env.JWTSECRET, (err, user) => {
+  jwt.verify(token, process.env.JWTSECRET, async (err, user) => {
     if (err) return res.status(401);
-    req.user = user;
+
+    const dbUser = await User.findOne({ _id: user.user._id });
+
+    if (!dbUser) {
+      return res.status(401);
+    }
+
+    req.user = dbUser;
     next();
   });
 }
