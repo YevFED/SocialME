@@ -1,16 +1,18 @@
 import jwt from "jsonwebtoken";
 
-export const generateToken = (userId, res) => {
-  const token = jwt.sign({ userId }, process.env.JWTSECRET, {
-    expiresIn: "7d",
-  });
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
 
-  res.cookie("jwt", token, {
-    maxAge: 7 * 25 * 60 * 1000,
-    httpOnly: true,
-    sameSite: "strict",
-    secure: process.env.NODEENV !== "development",
-  });
+  if (!token) {
+    console.log("token not created");
+    return res.status(401);
+  }
 
-  return token;
-};
+  jwt.verify(token, process.env.JWTSECRET, (err, user) => {
+    if (err) return res.status(401);
+    req.user = user;
+    next();
+  });
+}
+export { authenticateToken };

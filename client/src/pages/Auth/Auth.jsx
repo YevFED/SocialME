@@ -11,8 +11,6 @@ const Auth = () => {
   const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
 
-  const [ByEmail, setByEmail] = useState(true);
-
   // States
   const [fullName, setFullName] = useState("");
   const [password, setPassword] = useState("");
@@ -85,21 +83,18 @@ const Auth = () => {
     try {
       const response = await axiosIntance.post("/api/auth/login", {
         email: email,
-        fullName: fullName,
         password: password,
       });
       if (response.data && response.data.token) {
         localStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
         console.log("Logined");
         navigate("/home");
       }
     } catch (error) {
       console.log(error);
-      if (ByEmail) {
-        setErrors("Wrong email or password ");
-      } else {
-        setErrors("Wrong fullname or password ");
-      }
+
+      setErrors("Wrong email or password");
     }
   };
 
@@ -141,28 +136,13 @@ const Auth = () => {
           <form action="" className={styles.form} onSubmit={handleLogIn}>
             <p className={styles.formTitle}>Log in in your account</p>
 
-            {ByEmail ? (
-              <input
-                className={styles.input}
-                placeholder="Type your email : "
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            ) : (
-              <input
-                className={styles.input}
-                placeholder="Type your fullname : "
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
-            )}
+            <input
+              className={styles.input}
+              placeholder="Type your email : "
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-            <p
-              className={styles.logInChanger}
-              onClick={() => setByEmail(!ByEmail)}
-            >
-              {ByEmail ? "Log in with fullname" : "Log in with email"}
-            </p>
             <PasswordInput
               placehldr={"Type your password :"}
               password={password}

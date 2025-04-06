@@ -1,0 +1,63 @@
+.modalWrapper {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(40, 40, 40, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  z-index: 5;
+  .modalWindow {
+    width: 80vw;
+    height: 85vh;
+    background-color: rgb(245, 125, 0);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .profileInfo {
+      width: 80%;
+      height: 90%;
+      background-color: rgba(40, 40, 40);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      .profilePhoto {
+        margin-top: 150px;
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .profileInput {
+        width: 30%;
+        height: 50px;
+        background-color: rgba(40, 40, 40);
+        margin-top: 50px;
+        text-align: center;
+        border: 0px;
+        outline: none;
+        border: 1px solid rgb(245, 125, 0);
+        color: rgb(245, 125, 0);
+        font-size: 20px;
+        font-weight: 700;
+      }
+    }
+
+    .closeModal {
+      position: absolute;
+      top: 10%;
+      left: 86%;
+      cursor: pointer;
+    }
+  }
+}
+
+.modalWrapperHidden {
+  display: none;
+}

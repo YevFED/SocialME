@@ -9,11 +9,45 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 50px;
   border-top-left-radius: 10%;
   flex-direction: column;
-  .text {
-    color: rgb(40, 40, 40);
+  .profileCard {
+    width: 80%;
+    height: 150px;
+    border-radius: 20px;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .profileImage {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    .profileName {
+      color: rgb(245, 145, 0);
+      font-size: 25px;
+      font-weight: 700;
+    }
+    .profileEdit {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 300;
+      cursor: pointer;
+    }
   }
+
+  .sideOptions {
+    width: 80%;
+    height: 50%;
+    border-radius: 20px;
+    background-color: rgb(40, 40, 40);
+  }
+
   .closeButton {
     position: absolute;
     top: 2.5%;
@@ -23,6 +57,15 @@
   }
   .logOutButton {
     cursor: pointer;
+    font-size: 20px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(205, 0, 0);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 5px;
   }
 }
 
@@ -37,6 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   .closeButton {
     position: absolute;
     top: 2.5%;
