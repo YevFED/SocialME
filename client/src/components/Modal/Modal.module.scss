@@ -34,18 +34,40 @@
         justify-content: center;
       }
 
-      .profileInput {
-        width: 30%;
+      .inputWrapper {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 30px;
+        label {
+          color: rgb(245, 125, 0);
+          font-size: 20px;
+        }
+        .profileInput {
+          width: 60%;
+          height: 50px;
+          background-color: rgba(40, 40, 40);
+          text-align: center;
+          border: 0px;
+          outline: none;
+          border: 1px solid rgb(245, 125, 0);
+          color: rgb(245, 125, 0);
+          font-size: 20px;
+          font-weight: 700;
+        }
+      }
+      .modalButton {
+        width: 250px;
         height: 50px;
-        background-color: rgba(40, 40, 40);
-        margin-top: 50px;
-        text-align: center;
+        color: rgb(40, 40, 40);
+        background-color: rgb(245, 125, 0);
+        margin-top: 30px;
         border: 0px;
         outline: none;
-        border: 1px solid rgb(245, 125, 0);
-        color: rgb(245, 125, 0);
         font-size: 20px;
-        font-weight: 700;
+        font-weight: 900;
+        cursor: pointer;
       }
     }
 

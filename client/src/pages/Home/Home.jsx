@@ -9,7 +9,8 @@ import Modal from "../../components/Modal/Modal.jsx";
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Open, setOpen] = useState(false);
-
+  // Log out funct
+  const navigate = useNavigate();
   // Checking if user is logined
   const tokenCheck = () => {
     const token = localStorage.getItem("token");
@@ -17,9 +18,6 @@ const Home = () => {
       navigate("/auth");
     }
   };
-
-  // Log out funct
-  const navigate = useNavigate();
 
   useEffect(() => {
     tokenCheck();

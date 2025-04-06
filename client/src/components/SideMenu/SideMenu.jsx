@@ -33,6 +33,9 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
       navigate("/auth");
     }
   };
+  if (Open) {
+    getUserInfo();
+  }
 
   useEffect(() => {
     getUserInfo();
