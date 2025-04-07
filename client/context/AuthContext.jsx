@@ -4,6 +4,7 @@ import axiosInstance from "../src/axiosIntance";
 const AuthContext = createContext({
   user: null,
   edit: null,
+  logout: null,
   loading: null,
 });
 
@@ -25,6 +26,7 @@ export const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchAndSetUser = async () => {
+      setIsLoading(true);
       const currentUser = await fetchUser();
       setIsLoading(false);
       setUser(currentUser);
