@@ -1,7 +1,7 @@
 import User from "../models/user.models.js";
 
 export const getUser = async (req, res) => {
-  const { user } = req.user;
+  const user = req.user;
 
   const isUser = await User.findOne({ _id: user._id });
 
@@ -30,12 +30,16 @@ export const searchUser = async (req, res) => {
     { password: 0, _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
   );
 
-  return res.status(200).json({ users });
+  const filteredUsers = users.filter((user) => {
+    return user.fullName !== req.user.fullName;
+  });
+
+  return res.status(200).json(filteredUsers);
 };
 
 export const editUser = async (req, res) => {
   try {
-    const { user } = req.user;
+    const user = req.user;
 
     const { newEmail, newName } = req.body;
 
@@ -51,7 +55,6 @@ export const editUser = async (req, res) => {
 
     res.status(200).json(updateduser);
   } catch (error) {
-    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };

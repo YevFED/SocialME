@@ -15,7 +15,7 @@ export const SearchInput = ({ onSuccess, onLoading }) => {
       });
 
       onLoading(false);
-      onSuccess(res.data.users);
+      onSuccess(res.data);
     } catch (error) {
       onLoading(false);
       console.log(error);

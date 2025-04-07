@@ -8,7 +8,7 @@ export const Chats = () => {
   const [users, setUsers] = useState([]);
   const [loading, setisLoading] = useState(true);
 
-  console.log(loading);
+  console.log(users, loading);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
