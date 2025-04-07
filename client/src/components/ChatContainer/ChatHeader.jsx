@@ -1,8 +1,6 @@
-import { useChatStore } from "../../store/useChatStore";
 import styles from "./Chat.module.scss";
 
 export const ChatHeader = ({ user }) => {
-  const { selectedUser } = useChatStore();
   return (
     <div className={styles.chatHeader}>
       {user.profilepic ? (

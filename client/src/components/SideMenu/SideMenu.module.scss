@@ -4,8 +4,8 @@
   position: absolute;
   background-color: rgb(245, 145, 0);
   right: 0;
-  z-index: 9999;
-  transition: right 0.5s ease-in-out;
+  z-index: 999;
+  transition: right 1s ease-in-out;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -16,6 +16,7 @@
   .profileCard {
     width: 100%;
     height: 150px;
+    padding: 0 100px;
     border-radius: 20px;
     background-color: rgb(40, 40, 40);
     display: flex;
@@ -46,7 +47,7 @@
     width: 100%;
     height: 50%;
     border-radius: 20px;
-    background-color: rgb(147, 83, 83);
+    background-color: rgb(40, 40, 40);
   }
 
   .closeButton {
@@ -72,22 +73,74 @@
 }
 
 .sideMenu {
-  width: 25%;
+  padding: 0 40px;
   height: 100vh;
   position: absolute;
-  background-color: rgb(40, 40, 40);
-  z-index: 9999;
-  transition: right 0.5s ease-in-out;
-  display: flex;
+  background-color: rgb(245, 145, 0);
   right: -100%;
+  z-index: 999;
+  transition: right 1s ease-in-out;
+  display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
+  gap: 50px;
   transform: translateY(-100px);
+  border-top-left-radius: 10%;
+  flex-direction: column;
+  .profileCard {
+    width: 100%;
+    height: 150px;
+    padding: 0 100px;
+    border-radius: 20px;
+    background-color: rgb(40, 40, 40);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .profileImage {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background-color: white;
+    }
+    .profileName {
+      color: rgb(245, 145, 0);
+      font-size: 25px;
+      font-weight: 700;
+    }
+    .profileEdit {
+      color: white;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 300;
+      cursor: pointer;
+    }
+  }
+  .sideOptions {
+    width: 100%;
+    height: 50%;
+    border-radius: 20px;
+    background-color: rgb(40, 40, 40);
+  }
+
   .closeButton {
     position: absolute;
-    top: 2.5%;
-    left: 85%;
+    top: 0;
+    right: 0;
+    transform: translate(-50%, 50%);
     cursor: pointer;
+    fill: rgb(255, 255, 255);
+  }
+  .logOutButton {
+    cursor: pointer;
+    font-size: 20px;
+    background-color: rgb(40, 40, 40);
+    color: rgb(205, 0, 0);
+    padding: 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 5px;
   }
 }
