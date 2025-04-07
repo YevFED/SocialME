@@ -18,6 +18,21 @@ export const getUser = async (req, res) => {
   });
 };
 
+export const searchUser = async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400);
+  }
+
+  const { name } = req.body.name;
+
+  const users = await User.find(
+    { fullName: { $regex: name, $options: "i" } },
+    { password: 0, _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+  );
+
+  return res.status(200).json({ users });
+};
+
 export const editUser = async (req, res) => {
   try {
     const { user } = req.user;

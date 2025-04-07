@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import Header from "../../components/Header/Header.jsx";
 import styles from "./Home.module.scss";
 import SideMenu from "../../components/SideMenu/SideMenu.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
+import { Chats } from "./Chats.jsx";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
@@ -19,7 +20,11 @@ const Home = () => {
       />
       <Modal openModal={openModal} setOpenModal={setOpenModal} />
       <div className={styles.wrapper}>
-        <p>Will be chat window</p>
+        <Chats />
+
+        <div className={styles.chat}>
+          <p className={styles.noChatMessage}>No Chat selected</p>
+        </div>
       </div>
     </>
   );

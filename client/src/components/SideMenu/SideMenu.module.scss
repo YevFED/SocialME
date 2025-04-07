@@ -10,6 +10,7 @@
   align-items: center;
   justify-content: center;
   gap: 50px;
+  transform: translateY(-100px);
   border-top-left-radius: 10%;
   flex-direction: column;
   .profileCard {
@@ -81,6 +82,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  transform: translateY(-100px);
   .closeButton {
     position: absolute;
     top: 2.5%;

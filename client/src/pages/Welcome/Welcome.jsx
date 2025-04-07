@@ -1,10 +1,16 @@
-import React from "react";
 import styles from "./Welcome.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import background from "../../assets/background.png";
+import { useSession } from "../../../context/AuthContext";
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const { user, loading } = useSession();
+
+  if (!loading && user) {
+    navigate("/home");
+  }
+
   return (
     <>
       <div className={styles.wrapper}>
