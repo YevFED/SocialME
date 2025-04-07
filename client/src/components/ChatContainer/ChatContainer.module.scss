@@ -10,6 +10,7 @@
   flex-direction: column;
   flex: 1;
   overflow: auto;
+  height: 89%;
 }
 
 .chatEnd {
@@ -69,4 +70,11 @@
 
 p {
   margin: 0;
+}
+
+.emptyDialogText {
+  color: rgb(245, 145, 0);
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
