@@ -4,10 +4,13 @@ import styles from "./Home.module.scss";
 import SideMenu from "../../components/SideMenu/SideMenu.jsx";
 import Modal from "../../components/Modal/Modal.jsx";
 import { Chats } from "../../components/Chats/Chats.jsx";
+import { useChatStore } from "../../store/useChatStore.jsx";
+import { ChatContainer } from "../../components/ChatContainer/ChatContainer.jsx";
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Open, setOpen] = useState(false);
+  const { selectedUser } = useChatStore();
 
   return (
     <>
@@ -23,7 +26,11 @@ const Home = () => {
         <Chats />
 
         <div className={styles.chat}>
-          <p className={styles.noChatMessage}>No Chat selected</p>
+          {selectedUser ? (
+            <ChatContainer />
+          ) : (
+            <p className={styles.noChatMessage}>No Chat selected</p>
+          )}
         </div>
       </div>
     </>

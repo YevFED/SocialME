@@ -1,11 +1,11 @@
 import styles from "./Welcome.module.scss";
 import { Link, useNavigate } from "react-router-dom";
 import background from "../../assets/background.png";
-import { useSession } from "../../../context/AuthContext";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const Welcome = () => {
   const navigate = useNavigate();
-  const { user, loading } = useSession();
+  const { user, loading } = useAuthStore();
 
   if (!loading && user) {
     navigate("/home");

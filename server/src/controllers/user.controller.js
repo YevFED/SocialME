@@ -27,7 +27,7 @@ export const searchUser = async (req, res) => {
 
   const users = await User.find(
     { fullName: { $regex: name, $options: "i" } },
-    { password: 0, _id: 0, createdAt: 0, updatedAt: 0, __v: 0 }
+    { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
   );
 
   const filteredUsers = users.filter((user) => {

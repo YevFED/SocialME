@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
 import styles from "./SideMenu.module.scss";
 import { GoArrowRight } from "react-icons/go";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import axiosIntance from "../../axiosIntance";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useSession } from "../../../context/AuthContext";
+import { useAuthStore } from "../../store/useAuthStore";
 
 const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
-  const { user, loading } = useSession();
+  const { user, loading } = useAuthStore();
 
   const navigate = useNavigate();
   const handleLogout = async () => {

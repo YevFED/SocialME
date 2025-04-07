@@ -3,12 +3,13 @@ import styles from "./Chats.module.scss";
 import { SearchInput } from "./SearchInput";
 import { UserCard } from "../UserCard/UserCard";
 import { BiLoaderAlt } from "react-icons/bi";
+import { useChatStore } from "../../store/useChatStore";
 
 export const Chats = () => {
   const [users, setUsers] = useState([]);
   const [loading, setisLoading] = useState(true);
-
-  console.log(users, loading);
+  const { setSelectedUser, users: lol } = useChatStore();
+  console.log(lol);
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
@@ -42,7 +43,13 @@ export const Chats = () => {
 
           {!loading &&
             users.map((user) => {
-              return <UserCard name={user.fullName} key={user.fullName} />;
+              return (
+                <UserCard
+                  name={user.fullName}
+                  key={user._id}
+                  onClick={() => setSelectedUser(user)}
+                />
+              );
             })}
         </div>
       </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
-import { useSession } from "../../../context/AuthContext";
+import { useAuthStore } from "../../store/useAuthStore";
 const Modal = ({ openModal, setOpenModal }) => {
-  const { user, loading, edit } = useSession();
+  const { user, loading, edit } = useAuthStore();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -51,7 +51,7 @@ const Modal = ({ openModal, setOpenModal }) => {
           <button
             className={styles.modalButton}
             type="submit"
-            onClick={() => edit(fullName, email)}
+            onClick={() => edit({ newName: fullName, newEmail: email })}
             disabled={loading}
           >
             Update profile

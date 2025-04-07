@@ -4,7 +4,7 @@
   position: absolute;
   background-color: rgb(245, 145, 0);
   right: 0;
-  z-index: 3;
+  z-index: 9999;
   transition: right 0.5s ease-in-out;
   display: flex;
   align-items: center;
@@ -76,7 +76,7 @@
   height: 100vh;
   position: absolute;
   background-color: rgb(40, 40, 40);
-  z-index: 33;
+  z-index: 9999;
   transition: right 0.5s ease-in-out;
   display: flex;
   right: -100%;
