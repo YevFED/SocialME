@@ -28,23 +28,33 @@ const Modal = ({ openModal, setOpenModal }) => {
 
         <div className={styles.profileInfo}>
           <img src="" alt="profilePhoto" className={styles.profilePhoto} />
-          <input
-            type="text"
-            className={styles.profileInput}
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
-          />
-          <input
-            type="text"
-            className={styles.profileInput}
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+
+          <div className={styles.inputWrapper}>
+            <label htmlFor="">Fullname :</label>
+            <input
+              type="text"
+              className={styles.profileInput}
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+            />
+          </div>
+          <div className={styles.inputWrapper}>
+            <label htmlFor="">Email :</label>
+            <input
+              type="text"
+              className={styles.profileInput}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
           <button
+            className={styles.modalButton}
+            type="submit"
             onClick={() => edit(fullName, email)}
             disabled={loading || user.fullName === fullName}
           >
-            Submit
+            Update profile
           </button>
         </div>
       </div>

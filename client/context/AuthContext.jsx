@@ -37,7 +37,7 @@ export const AuthContextProvider = ({ children }) => {
     if (!newName || !newEmail) return;
 
     try {
-      const response = await axiosInstance.put("/api/user/changeInfo", {
+      const response = await axiosInstance.put("/api/user/updateuser", {
         newName,
         newEmail,
       });

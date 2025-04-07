@@ -10,7 +10,7 @@ import { useSession } from "../../../context/AuthContext.jsx";
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Open, setOpen] = useState(false);
-  const user = useSession();
+  const navigate = useNavigate();
 
   // Checking if user is logined
   const tokenCheck = () => {
@@ -19,9 +19,6 @@ const Home = () => {
       navigate("/auth");
     }
   };
-
-  // Log out funct
-  const navigate = useNavigate();
 
   useEffect(() => {
     tokenCheck();
