@@ -1,5 +1,4 @@
 import User from "../models/user.models.js";
-import jwt from "jsonwebtoken";
 
 export const getUser = async (req, res) => {
   const { user } = req.user;
@@ -19,15 +18,15 @@ export const getUser = async (req, res) => {
   });
 };
 
-export const updateUser = async (req, res) => {
+export const editUser = async (req, res) => {
   try {
     const { user } = req.user;
 
-    const { email, fullName } = req.body;
+    const { newEmail, newName } = req.body;
 
     const updateduser = await User.findByIdAndUpdate(
       user._id,
-      { email, fullName },
+      { email: newEmail, fullName: newName },
       { new: true }
     );
 

@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axiosIntance from "../../axiosIntance.js";
 import Header from "../../components/Header/Header.jsx";
 import styles from "./Home.module.scss";
 import SideMenu from "../../components/SideMenu/SideMenu.jsx";
@@ -9,19 +7,6 @@ import Modal from "../../components/Modal/Modal.jsx";
 const Home = () => {
   const [openModal, setOpenModal] = useState(false);
   const [Open, setOpen] = useState(false);
-  // Log out funct
-  const navigate = useNavigate();
-  // Checking if user is logined
-  const tokenCheck = () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/auth");
-    }
-  };
-
-  useEffect(() => {
-    tokenCheck();
-  }, []);
 
   return (
     <>

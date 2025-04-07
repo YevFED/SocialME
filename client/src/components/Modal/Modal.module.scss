@@ -68,6 +68,11 @@
         font-size: 20px;
         font-weight: 900;
         cursor: pointer;
+        transition: opacity 0.3s ease;
+      }
+      .modalButton:disabled {
+        opacity: 50%;
+        transition: opacity 0.3s ease;
       }
     }
 

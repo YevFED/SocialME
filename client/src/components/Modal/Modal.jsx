@@ -1,44 +1,18 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
-import axiosIntance from "../../axiosIntance";
-import { useNavigate } from "react-router-dom";
+import { useSession } from "../../../context/AuthContext";
 const Modal = ({ openModal, setOpenModal }) => {
-  const navigate = useNavigate();
+  const { user, loading, edit } = useSession();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const getUserInfo = async () => {
-    try {
-      const response = await axiosIntance.get("/api/user/getuser");
-
-      if (response.data && response.data.user) {
-        setFullName(response.data.user.fullName);
-        setEmail(response.data.user.email);
-      }
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
-  const updateUser = async () => {
-    try {
-      const response = await axiosIntance.put("/api/user/updateuser", {
-        fullName,
-        email,
-      });
-
-      if (response) {
-        console.log("userUpdated");
-        setOpenModal(!openModal);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
 
   useEffect(() => {
-    getUserInfo();
-  }, []);
+    if (user && !loading) {
+      setFullName(user.fullName);
+      setEmail(user.email);
+    }
+  }, [user]);
 
   return (
     <div
@@ -76,7 +50,8 @@ const Modal = ({ openModal, setOpenModal }) => {
           <button
             className={styles.modalButton}
             type="submit"
-            onClick={updateUser}
+            onClick={() => edit(fullName, email)}
+            disabled={loading}
           >
             Update profile
           </button>

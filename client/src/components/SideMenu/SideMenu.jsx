@@ -5,10 +5,10 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import axiosIntance from "../../axiosIntance";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useSession } from "../../../context/AuthContext";
 
 const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
-  const [fullname, setFullname] = useState("Guest");
-  const [userInfo, setUserInfo] = useState("Guest");
+  const { user, loading } = useSession();
 
   const navigate = useNavigate();
   const handleLogout = async () => {
@@ -21,26 +21,6 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
     }
   };
 
-  const getUserInfo = async () => {
-    try {
-      const response = await axiosIntance.get("/api/user/getuser");
-
-      if (response.data && response.data.user) {
-        setFullname(response.data.user.fullName);
-      }
-    } catch (error) {
-      console.log(error.message);
-      navigate("/auth");
-    }
-  };
-  if (Open) {
-    getUserInfo();
-  }
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
-
   return (
     <div className={Open ? styles.sideMenuActive : styles.sideMenu}>
       <GoArrowRight
@@ -51,7 +31,9 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
       <div className={styles.profileCard}>
         <img src="" alt="profilePhoto" className={styles.profileImage} />
         <div>
-          <p className={styles.profileName}>{fullname}</p>
+          <p className={styles.profileName}>
+            {loading ? "Loading...." : user.fullName}
+          </p>
           <p
             className={styles.profileEdit}
             onClick={() => setOpenModal(!openModal)}
