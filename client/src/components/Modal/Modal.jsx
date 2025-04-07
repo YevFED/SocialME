@@ -20,6 +20,7 @@ const Modal = ({ openModal, setOpenModal }) => {
     >
       <div className={styles.modalWindow}>
         <IoMdClose
+          fill="white"
           onClick={() => setOpenModal(!openModal)}
           className={styles.closeModal}
           size={45}

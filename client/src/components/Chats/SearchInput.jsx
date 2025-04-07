@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "./Home.module.scss";
+import styles from "./Chats.module.scss";
 import axiosIntance from "../../axiosIntance";
 import useDebounce from "../../hooks/useDebounce";
 

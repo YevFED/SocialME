@@ -1,32 +1,41 @@
+@media (max-width: 690px) {
+  .modalWindow {
+    width: 100%;
+    margin: 0 30px;
+  }
+}
+
 .modalWrapper {
   width: 100vw;
   height: 100vh;
-  background-color: rgba(40, 40, 40, 0.5);
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
   position: absolute;
   z-index: 5;
   .modalWindow {
-    width: 80vw;
-    height: 85vh;
-    background-color: rgb(245, 125, 0);
+    margin: 0 60px;
+    position: relative;
+    width: 800px;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     .profileInfo {
-      width: 80%;
-      height: 90%;
+      padding: 25px 10px;
+      width: 100%;
+      height: 100%;
       background-color: rgba(40, 40, 40);
       border-radius: 20px;
       display: flex;
       align-items: center;
       flex-direction: column;
+      gap: 30px;
       .profilePhoto {
-        margin-top: 150px;
-        width: 250px;
-        height: 250px;
+        width: 220px;
+        height: 220px;
         border-radius: 50%;
         background-color: white;
         display: flex;
@@ -35,17 +44,15 @@
       }
 
       .inputWrapper {
-        width: 50%;
         display: flex;
         align-items: center;
         flex-direction: column;
-        margin-top: 30px;
         label {
           color: rgb(245, 125, 0);
           font-size: 20px;
         }
         .profileInput {
-          width: 60%;
+          width: 100%;
           height: 50px;
           background-color: rgba(40, 40, 40);
           text-align: center;
@@ -58,11 +65,9 @@
         }
       }
       .modalButton {
-        width: 250px;
-        height: 50px;
+        padding: 15px 40px;
         color: rgb(40, 40, 40);
         background-color: rgb(245, 125, 0);
-        margin-top: 30px;
         border: 0px;
         outline: none;
         font-size: 20px;
@@ -78,8 +83,9 @@
 
     .closeModal {
       position: absolute;
-      top: 10%;
-      left: 86%;
+      top: 0;
+      right: 0;
+      transform: translate(-50%, 50%);
       cursor: pointer;
     }
   }

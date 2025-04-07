@@ -1,7 +1,8 @@
 import { useState } from "react";
-import styles from "./Home.module.scss";
+import styles from "./Chats.module.scss";
 import { SearchInput } from "./SearchInput";
-import { UserCard } from "../../components/UserCard/UserCard";
+import { UserCard } from "../UserCard/UserCard";
+import { BiLoaderAlt } from "react-icons/bi";
 
 export const Chats = () => {
   const [users, setUsers] = useState([]);
@@ -25,7 +26,11 @@ export const Chats = () => {
         <div className={styles.chats}>
           {loading && (
             <div className={styles.loading}>
-              <p>Loading....</p>
+              <BiLoaderAlt
+                fill="white"
+                className={styles.loadingIco}
+                size={25}
+              />
             </div>
           )}
 

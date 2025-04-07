@@ -8,6 +8,13 @@
   text-decoration: none;
   color: black;
   font-family: "Roboto", sans-serif;
+}
 
+body {
   overflow: hidden;
+}
+
+.root {
+  overflow: hidden;
+  position: relative;
 }
