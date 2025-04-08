@@ -89,7 +89,8 @@ p {
 
 .emptyDialogText {
   color: rgb(245, 145, 0);
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
