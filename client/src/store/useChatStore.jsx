@@ -39,7 +39,7 @@ export const useChatStore = create((set, get) => ({
         `/api/messages/send/${selectedUser._id}`,
         messageData
       );
-      console.log(res);
+
       set({ messages: [...messages, res.data] });
     } catch (error) {
       console.log(error);

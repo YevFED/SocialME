@@ -15,6 +15,13 @@
 
 .chatEnd {
   justify-content: flex-end;
+  text-align: end;
+  .chatImage {
+    justify-content: flex-end;
+  }
+  .chatTime {
+    margin-left: auto;
+  }
 }
 
 .chatStart {
@@ -27,8 +34,8 @@
 }
 
 .avatar {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   border: 2px solid #e0e0e0;
 
@@ -50,12 +57,13 @@
   font-size: 0.75rem;
   opacity: 0.7;
   margin-left: 5px;
+  color: rgb(245, 145, 0);
 }
 
 .chatBubble {
   display: flex;
   flex-direction: column;
-  max-width: 75%;
+  max-width: 100%;
   background-color: #2c2c2c;
   padding: 10px;
   border-radius: 10px;
