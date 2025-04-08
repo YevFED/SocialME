@@ -14,7 +14,8 @@ body {
   overflow: hidden;
 }
 
-.root {
+#root {
   overflow: hidden;
   position: relative;
+  max-height: 100vh;
 }

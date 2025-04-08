@@ -1,6 +1,8 @@
 .chat {
   display: flex;
-  flex-direction: column;
+  flex-direction: row-reverse;
+  align-items: end;
+  gap: 10px;
   margin-bottom: 10px;
   padding: 0 20px;
 }
@@ -9,15 +11,15 @@
   display: flex;
   flex-direction: column;
   flex: 1;
-  overflow: auto;
-  height: 89%;
+  overflow-y: auto;
+  height: inherit;
 }
 
 .chatEnd {
-  justify-content: flex-end;
+  justify-content: end;
   text-align: end;
   .chatImage {
-    justify-content: flex-end;
+    justify-content: end;
   }
   .chatTime {
     margin-left: auto;
@@ -25,7 +27,12 @@
 }
 
 .chatStart {
-  justify-content: flex-start;
+  justify-content: start;
+  flex-direction: row !important;
+
+  .chatBubble {
+    margin: 0 !important;
+  }
 }
 
 .chatImage {
@@ -37,7 +44,6 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 2px solid #e0e0e0;
 
   img {
     width: 100%;
@@ -47,27 +53,28 @@
   }
 }
 
-.chatHeader {
-  display: flex;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
 .chatTime {
   font-size: 0.75rem;
   opacity: 0.7;
   margin-left: 5px;
   color: rgb(245, 145, 0);
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
 }
 
 .chatBubble {
+  margin-left: auto;
   display: flex;
   flex-direction: column;
-  max-width: 100%;
+  max-width: max-content;
   background-color: #2c2c2c;
   padding: 10px;
   border-radius: 10px;
   position: relative;
+  text-wrap: pretty;
+  width: 480px;
+  word-break: break-word;
 }
 
 .chatImageAttachment {

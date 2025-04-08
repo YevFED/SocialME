@@ -26,24 +26,26 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
         onClick={() => setOpen(!Open)}
         size={40}
       />
-      <div className={styles.profileCard}>
-        <img src="" alt="profilePhoto" className={styles.profileImage} />
-        <div>
-          <p className={styles.profileName}>
-            {loading ? "Loading...." : user.fullName}
-          </p>
-          <p
-            className={styles.profileEdit}
-            onClick={() => setOpenModal(!openModal)}
-          >
-            Edit profile
-          </p>
+      <div className={styles.profileWrapper}>
+        <div className={styles.profileCard}>
+          <img src="" alt="profilePhoto" className={styles.profileImage} />
+          <div>
+            <p className={styles.profileName}>
+              {loading ? "Loading...." : user.fullName}
+            </p>
+            <p
+              className={styles.profileEdit}
+              onClick={() => setOpenModal(!openModal)}
+            >
+              Edit profile
+            </p>
+          </div>
         </div>
-      </div>
-      <div className={styles.sideOptions}></div>
-      <div className={styles.logOutButton} onClick={handleLogout}>
-        Log Out
-        <RiLogoutBoxRLine fill="red" />
+        <div className={styles.sideOptions}></div>
+        <div className={styles.logOutButton} onClick={handleLogout}>
+          Log Out
+          <RiLogoutBoxRLine fill="red" />
+        </div>
       </div>
     </div>
   );

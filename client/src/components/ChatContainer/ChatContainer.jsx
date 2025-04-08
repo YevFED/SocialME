@@ -52,19 +52,18 @@ export const ChatContainer = () => {
                 <img
                   src={
                     message.senderId === user._id
-                      ? user.profilePic || "/avatar.png"
-                      : selectedUser.profilePic || "/avatar.png"
+                      ? user.profilePic || "https://placehold.co/50x50"
+                      : selectedUser.profilePic || "https://placehold.co/50x50"
                   }
                   alt="profile pic"
                 />
               </div>
             </div>
-            <div className={styles.chatHeader}>
+            <div className={styles.chatBubble}>
               <time className={styles.chatTime}>
                 {formatMessageTime(message.createdAt)}
               </time>
-            </div>
-            <div className={styles.chatBubble}>
+
               {message.image && (
                 <img
                   src={message.image}
@@ -72,7 +71,9 @@ export const ChatContainer = () => {
                   className={styles.chatImageAttachment}
                 />
               )}
-              {message.text && <p>{message.text}</p>}
+              {message.text && (
+                <p style={{ paddingLeft: "55px" }}>{message.text}</p>
+              )}
             </div>
           </div>
         ))

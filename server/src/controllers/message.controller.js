@@ -28,14 +28,13 @@ export const sendMessage = async (req, res) => {
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
-    console.log(req.body);
+    if (!image && !text) {
+      return res.json(400);
+    }
 
     let imageUrl;
     if (image) {
-      // Upload base64 image to cloudinary
-
       const uploadResponse = await cloudinary.uploader.upload(image);
-      console.log(uploadResponse.secure_url);
       imageUrl = uploadResponse.secure_url;
     }
 
