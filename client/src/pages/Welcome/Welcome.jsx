@@ -17,8 +17,8 @@ const Welcome = () => {
         <img src={background} alt="" className={styles.background} />
         <h1 className={styles.title}>SocialME</h1>
 
-        {/* <div className={styles.circle}></div>
-        <div className={styles.circle2}></div> */}
+        <div className={styles.circle}></div>
+        <div className={styles.circle2}></div>
         <Link to="/auth" className={styles.button}>
           Let's Started
         </Link>

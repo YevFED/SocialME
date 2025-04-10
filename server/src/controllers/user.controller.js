@@ -58,3 +58,11 @@ export const editUser = async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 };
+
+// export const UploadPhoto = async (req, req) => {
+//   const body = req.body;
+
+//   try {
+//     const newImage = await User.create;
+//   } catch (error) {}
+// };

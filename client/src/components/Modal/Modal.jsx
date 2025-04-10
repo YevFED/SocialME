@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useAuthStore } from "../../store/useAuthStore";
+
+import userImage from "../../assets/userImage.png";
+
 const Modal = ({ openModal, setOpenModal }) => {
   const { user, loading, edit } = useAuthStore();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+
+  const imageRef = useRef();
 
   useEffect(() => {
     if (user && !loading) {
@@ -27,7 +32,13 @@ const Modal = ({ openModal, setOpenModal }) => {
         />
 
         <div className={styles.profileInfo}>
-          <img src="" alt="profilePhoto" className={styles.profilePhoto} />
+          <input type="file" style={{ display: "none" }} ref={imageRef} />
+          <div
+            className={styles.profilePhoto}
+            onClick={() => imageRef.current.click()}
+          >
+            <img src={userImage} alt="profilePhoto" />
+          </div>
 
           <div className={styles.inputWrapper}>
             <label htmlFor="">Fullname :</label>
@@ -35,6 +46,7 @@ const Modal = ({ openModal, setOpenModal }) => {
               type="text"
               className={styles.profileInput}
               value={fullName}
+              maxLength={20}
               onChange={(e) => setFullName(e.target.value)}
             />
           </div>

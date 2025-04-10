@@ -6,6 +6,8 @@ import { useAuthStore } from "../../store/useAuthStore";
 import { formatMessageTime } from "../../utils";
 import MessageInput from "./MessageInput";
 
+import userImage from "../../assets/userImage.png";
+
 export const ChatContainer = () => {
   const {
     messages,
@@ -36,52 +38,54 @@ export const ChatContainer = () => {
   }
 
   return (
-    <div className={styles.chatWrapper}>
-      <ChatHeader user={selectedUser} />
+    <>
+      <div className={styles.chatWrapper}>
+        <ChatHeader user={selectedUser} />
+        {messages.length > 0 ? (
+          messages.map((message) => (
+            <div
+              key={message._id}
+              className={`${styles.chat} ${
+                message.senderId === user._id
+                  ? styles.chatEnd
+                  : styles.chatStart
+              }`}
+            >
+              <div className={styles.chatImage}>
+                <div className={styles.avatar}>
+                  <img
+                    src={
+                      message.senderId === user._id
+                        ? user.profilePic || userImage
+                        : selectedUser.profilePic || userImage
+                    }
+                    alt="profile pic"
+                  />
+                </div>
+              </div>
+              <div className={styles.chatBubble}>
+                <time className={styles.chatTime}>
+                  {formatMessageTime(message.createdAt)}
+                </time>
 
-      {messages.length > 0 ? (
-        messages.map((message) => (
-          <div
-            key={message._id}
-            className={`${styles.chat} ${
-              message.senderId === user._id ? styles.chatEnd : styles.chatStart
-            }`}
-          >
-            <div className={styles.chatImage}>
-              <div className={styles.avatar}>
-                <img
-                  src={
-                    message.senderId === user._id
-                      ? user.profilePic || "https://placehold.co/50x50"
-                      : selectedUser.profilePic || "https://placehold.co/50x50"
-                  }
-                  alt="profile pic"
-                />
+                {message.image && (
+                  <img
+                    src={message.image}
+                    alt="Attachment"
+                    className={styles.chatImageAttachment}
+                  />
+                )}
+                {message.text && (
+                  <p style={{ paddingLeft: "55px" }}>{message.text}</p>
+                )}
               </div>
             </div>
-            <div className={styles.chatBubble}>
-              <time className={styles.chatTime}>
-                {formatMessageTime(message.createdAt)}
-              </time>
-
-              {message.image && (
-                <img
-                  src={message.image}
-                  alt="Attachment"
-                  className={styles.chatImageAttachment}
-                />
-              )}
-              {message.text && (
-                <p style={{ paddingLeft: "55px" }}>{message.text}</p>
-              )}
-            </div>
-          </div>
-        ))
-      ) : (
-        <p className={styles.emptyDialogText}>Write your message</p>
-      )}
-
-      <MessageInput />
-    </div>
+          ))
+        ) : (
+          <p className={styles.emptyDialogText}>Write your message</p>
+        )}
+        <MessageInput />
+      </div>
+    </>
   );
 };

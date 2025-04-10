@@ -4,11 +4,13 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import axiosIntance from "../../axiosIntance";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
+import userImage from "../../assets/userImage.png";
 
 const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
   const { user, loading } = useAuthStore();
 
   const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       await axiosIntance.post("/api/auth/logout");
@@ -28,7 +30,10 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
       />
       <div className={styles.profileWrapper}>
         <div className={styles.profileCard}>
-          <img src="" alt="profilePhoto" className={styles.profileImage} />
+          <div className={styles.profileImage}>
+            <img src={userImage} alt="profilePhoto" />
+          </div>
+
           <div>
             <p className={styles.profileName}>
               {loading ? "Loading...." : user.fullName}

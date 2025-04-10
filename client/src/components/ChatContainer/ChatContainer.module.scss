@@ -1,3 +1,11 @@
+.chatWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow-y: auto;
+  width: 100vw;
+  height: inherit;
+}
 .chat {
   display: flex;
   flex-direction: row-reverse;
@@ -5,14 +13,6 @@
   gap: 10px;
   margin-bottom: 10px;
   padding: 0 20px;
-}
-
-.chatWrapper {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  overflow-y: auto;
-  height: inherit;
 }
 
 .chatEnd {
@@ -44,7 +44,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-
+  background-color: white;
   img {
     width: 100%;
     height: 100%;

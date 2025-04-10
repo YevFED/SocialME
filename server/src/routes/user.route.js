@@ -12,5 +12,6 @@ const router = express.Router();
 router.get("/getuser", authenticateToken, getUser);
 router.post("/search", authenticateToken, searchUser);
 router.put("/updateuser", authenticateToken, editUser);
+router.post("/upload", authenticateToken);
 
 export default router;
