@@ -34,9 +34,7 @@ export const searchUser = async (req, res) => {
     { password: 0, createdAt: 0, updatedAt: 0, __v: 0 }
   );
 
-  const filteredUsers = users.filter((user) => {
-    return user.fullName !== req.user.fullName;
-  });
+  const filteredUsers = users.filter((user) => !user._id.equals(req.user._id));
 
   return res.status(200).json(filteredUsers);
 };

@@ -54,9 +54,11 @@ const Modal = ({ openModal, setOpenModal }) => {
             type="file"
             style={{ display: "none" }}
             ref={imageRef}
-            onInput={(e) =>
-              handleFileSelected(e.target.files[e.target.files.length - 1])
-            }
+            onInput={(e) => {
+              if (e.target.files.length > 0) {
+                handleFileSelected(e.target.files[e.target.files.length - 1]);
+              }
+            }}
           />
           <div
             className={styles.profilePhoto}
