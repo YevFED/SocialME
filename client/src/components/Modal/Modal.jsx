@@ -15,15 +15,10 @@ const Modal = ({ openModal, setOpenModal }) => {
   const imageRef = useRef();
 
   const isChanged =
-    email !== user.email ||
-    fullName !== user.fullName ||
-    image !== user.profilepic;
-
-  console.log(
-    email !== user.email ||
+    !loading &&
+    (email !== user.email ||
       fullName !== user.fullName ||
-      image !== user.profilepic
-  );
+      image !== user.profilepic);
 
   const handleFileSelected = async (file) => {
     const reader = new FileReader();
@@ -59,9 +54,11 @@ const Modal = ({ openModal, setOpenModal }) => {
             type="file"
             style={{ display: "none" }}
             ref={imageRef}
-            onInput={(e) =>
-              handleFileSelected(e.target.files[e.target.files.length - 1])
-            }
+            onInput={(e) => {
+              if (e.target.files.length > 0) {
+                handleFileSelected(e.target.files[e.target.files.length - 1]);
+              }
+            }}
           />
           <div
             className={styles.profilePhoto}

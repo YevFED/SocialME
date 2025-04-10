@@ -5,11 +5,13 @@ import { emailValidator } from "../../utils/emailvalidator.js";
 import axiosIntance from "../../axiosIntance.js";
 
 import { useNavigate } from "react-router-dom";
+import { useAuthStore } from "../../store/useAuthStore.jsx";
 
 const Auth = () => {
   // Navigation on pages
   const navigate = useNavigate();
   const [Auth, setAuth] = useState(true);
+  const { checkAuth } = useAuthStore();
 
   // States
   const [fullName, setFullName] = useState("");
@@ -69,6 +71,7 @@ const Auth = () => {
       if (response.data && response.data.token) {
         localStorage.setItem("token", response.data.token);
         console.log("Created " + response.data.token);
+        await checkAuth();
         navigate("/home");
       }
     } catch (error) {
@@ -89,6 +92,7 @@ const Auth = () => {
         localStorage.setItem("token", response.data.token);
         console.log(response.data.token);
         console.log("Logined");
+        await checkAuth();
         navigate("/home");
       }
     } catch (error) {
