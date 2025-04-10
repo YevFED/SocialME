@@ -18,6 +18,9 @@
   background-color: rgb(30, 30, 30);
   color: white;
   display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
 
   & .noChatMessage {
     font-size: 22px;

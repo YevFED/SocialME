@@ -39,6 +39,7 @@ export const ChatContainer = () => {
 
   return (
     <>
+      <MessageInput />
       <div className={styles.chatWrapper}>
         <ChatHeader user={selectedUser} />
         {messages.length > 0 ? (
@@ -84,7 +85,6 @@ export const ChatContainer = () => {
         ) : (
           <p className={styles.emptyDialogText}>Write your message</p>
         )}
-        <MessageInput />
       </div>
     </>
   );

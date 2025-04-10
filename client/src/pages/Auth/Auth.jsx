@@ -90,7 +90,6 @@ const Auth = () => {
       });
       if (response.data && response.data.token) {
         localStorage.setItem("token", response.data.token);
-        console.log(response.data.token);
         console.log("Logined");
         await checkAuth();
         navigate("/home");
