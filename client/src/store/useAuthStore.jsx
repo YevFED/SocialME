@@ -54,6 +54,16 @@ export const useAuthStore = create((set, get) => ({
     }
   },
 
+  clearAll: async () => {
+    set({
+      user: null,
+      loading: true,
+      onlineUsers: [],
+      socket: null,
+      isLoadingPhoto: false,
+    });
+  },
+
   connectSocket: () => {
     const { user } = get();
     if (!user || get().socket?.connected) return;

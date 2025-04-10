@@ -2,12 +2,16 @@ import { create } from "zustand";
 import axiosInstance from "../axiosIntance";
 import { useAuthStore } from "./useAuthStore";
 
-export const useChatStore = create((set, get) => ({
+const initialState = {
   messages: [],
   users: [],
   selectedUser: null,
   isUsersLoading: false,
   isMessagesLoading: false,
+};
+
+export const useChatStore = create((set, get) => ({
+  ...initialState,
 
   getUsers: async () => {
     set({ isUsersLoading: true });
@@ -19,6 +23,10 @@ export const useChatStore = create((set, get) => ({
     } finally {
       set({ isUsersLoading: false });
     }
+  },
+
+  clearAll: () => {
+    set(initialState);
   },
 
   getMessages: async (userId) => {

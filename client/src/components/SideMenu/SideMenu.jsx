@@ -5,9 +5,11 @@ import axiosIntance from "../../axiosIntance";
 import { useNavigate } from "react-router-dom";
 import { useAuthStore } from "../../store/useAuthStore";
 import userImage from "../../assets/userImage.png";
+import { useChatStore } from "../../store/useChatStore";
 
 const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
   const { user, loading } = useAuthStore();
+  const { clearAll } = useChatStore();
 
   const navigate = useNavigate();
 
@@ -15,6 +17,7 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
     try {
       await axiosIntance.post("/api/auth/logout");
       localStorage.clear();
+      clearAll();
       navigate("/auth");
     } catch (error) {
       console.log(error.message);
