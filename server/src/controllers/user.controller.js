@@ -4,7 +4,9 @@ import cloudinary from "../lib/cloudinary.js";
 export const getUser = async (req, res) => {
   const user = req.user;
 
-  const isUser = await User.findOne({ _id: user._id });
+  console.log(user);
+
+  const isUser = await User.findOne({ email: user.email });
 
   if (!isUser) {
     return res.status(401);

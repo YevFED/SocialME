@@ -15,15 +15,10 @@ const Modal = ({ openModal, setOpenModal }) => {
   const imageRef = useRef();
 
   const isChanged =
-    email !== user.email ||
-    fullName !== user.fullName ||
-    image !== user.profilepic;
-
-  console.log(
-    email !== user.email ||
+    !loading &&
+    (email !== user.email ||
       fullName !== user.fullName ||
-      image !== user.profilepic
-  );
+      image !== user.profilepic);
 
   const handleFileSelected = async (file) => {
     const reader = new FileReader();

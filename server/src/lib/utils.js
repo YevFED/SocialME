@@ -13,7 +13,9 @@ function authenticateToken(req, res, next) {
   jwt.verify(token, process.env.JWTSECRET, async (err, user) => {
     if (err) return res.status(401);
     const dbUser = await User.findOne({ _id: user.user._id });
+    console.log(dbUser);
     req.user = { ...dbUser._doc };
+
     next();
   });
 }
