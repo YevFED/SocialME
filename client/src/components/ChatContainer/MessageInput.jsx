@@ -13,7 +13,6 @@ const MessageInput = () => {
   const inputRef = useRef();
 
   const sending = (e) => {
-    console.log(image);
     if (e.code === "Enter") {
       sendMessage({ text: message, image: image });
       setMessage("");
@@ -22,7 +21,7 @@ const MessageInput = () => {
   };
 
   const handleImage = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[e.target.files.length - 1];
 
     if (file) {
       const reader = new FileReader();

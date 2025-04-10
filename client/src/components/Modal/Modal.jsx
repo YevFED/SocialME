@@ -1,21 +1,44 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useAuthStore } from "../../store/useAuthStore";
+import { BiLoaderAlt } from "react-icons/bi";
 
 import userImage from "../../assets/userImage.png";
 
 const Modal = ({ openModal, setOpenModal }) => {
-  const { user, loading, edit } = useAuthStore();
+  const { user, loading, edit, uploadPhoto, isLoadingPhoto } = useAuthStore();
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [image, setImage] = useState("");
 
   const imageRef = useRef();
+
+  const isChanged =
+    email !== user.email ||
+    fullName !== user.fullName ||
+    image !== user.profilepic;
+
+  console.log(
+    email !== user.email ||
+      fullName !== user.fullName ||
+      image !== user.profilepic
+  );
+
+  const handleFileSelected = async (file) => {
+    const reader = new FileReader();
+    reader.onloadend = async () => {
+      const res = await uploadPhoto(reader.result);
+      setImage(res.data.url);
+    };
+    reader.readAsDataURL(file);
+  };
 
   useEffect(() => {
     if (user && !loading) {
       setFullName(user.fullName);
       setEmail(user.email);
+      setImage(user.profilepic);
     }
   }, [user]);
 
@@ -32,12 +55,26 @@ const Modal = ({ openModal, setOpenModal }) => {
         />
 
         <div className={styles.profileInfo}>
-          <input type="file" style={{ display: "none" }} ref={imageRef} />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            ref={imageRef}
+            onInput={(e) =>
+              handleFileSelected(e.target.files[e.target.files.length - 1])
+            }
+          />
           <div
             className={styles.profilePhoto}
             onClick={() => imageRef.current.click()}
           >
-            <img src={userImage} alt="profilePhoto" />
+            {isLoadingPhoto ? (
+              <BiLoaderAlt fill="black" size={25} className={styles.loading} />
+            ) : (
+              <img
+                src={!loading && image ? image : userImage}
+                alt="profilePhoto"
+              />
+            )}
           </div>
 
           <div className={styles.inputWrapper}>
@@ -64,7 +101,7 @@ const Modal = ({ openModal, setOpenModal }) => {
             className={styles.modalButton}
             type="submit"
             onClick={() => edit({ newName: fullName, newEmail: email })}
-            disabled={loading}
+            disabled={isLoadingPhoto || loading || !isChanged}
           >
             Update profile
           </button>

@@ -8,8 +8,7 @@ import { useChatStore } from "../../store/useChatStore";
 export const Chats = () => {
   const [users, setUsers] = useState([]);
   const [loading, setisLoading] = useState(true);
-  const { setSelectedUser, users: lol } = useChatStore();
-  console.log(lol);
+  const { setSelectedUser } = useChatStore();
 
   return (
     <div style={{ display: "flex", flexDirection: "column", flex: "1" }}>
@@ -45,6 +44,7 @@ export const Chats = () => {
             users.map((user) => {
               return (
                 <UserCard
+                  profilepic={user.profilepic}
                   name={user.fullName}
                   key={user._id}
                   onClick={() => setSelectedUser(user)}

@@ -10,6 +10,7 @@ export const useAuthStore = create((set, get) => ({
   loading: true,
   onlineUsers: [],
   socket: null,
+  isLoadingPhoto: false,
 
   checkAuth: async () => {
     try {
@@ -17,7 +18,9 @@ export const useAuthStore = create((set, get) => ({
 
       console.log(res.data);
 
-      set({ user: res.data.user });
+      set({
+        user: res.data.user,
+      });
       get().connectSocket();
     } catch (error) {
       console.log("Error in checkAuth:", error);
@@ -38,6 +41,17 @@ export const useAuthStore = create((set, get) => ({
       get().checkAuth();
     } catch (error) {
       console.log("error in update profile:", error);
+      console.log(error);
+    }
+  },
+
+  uploadPhoto: async (file) => {
+    try {
+      set({ isLoadingPhoto: true });
+      const res = await axiosInstance.post("/api/user/upload", { image: file });
+      set({ isLoadingPhoto: false });
+      return res;
+    } catch (error) {
       console.log(error);
     }
   },

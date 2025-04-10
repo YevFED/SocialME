@@ -31,7 +31,10 @@ const SideMenu = ({ Open, setOpen, openModal, setOpenModal }) => {
       <div className={styles.profileWrapper}>
         <div className={styles.profileCard}>
           <div className={styles.profileImage}>
-            <img src={userImage} alt="profilePhoto" />
+            <img
+              src={!loading && user.profilepic ? user.profilepic : userImage}
+              alt="profilePhoto"
+            />
           </div>
 
           <div>

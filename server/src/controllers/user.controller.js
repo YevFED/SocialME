@@ -1,4 +1,5 @@
 import User from "../models/user.models.js";
+import cloudinary from "../lib/cloudinary.js";
 
 export const getUser = async (req, res) => {
   const user = req.user;
@@ -14,6 +15,7 @@ export const getUser = async (req, res) => {
       fullName: isUser.fullName,
       email: isUser.email,
       _id: isUser._id,
+      profilepic: isUser.profilepic,
     },
   });
 };
@@ -59,10 +61,23 @@ export const editUser = async (req, res) => {
   }
 };
 
-// export const UploadPhoto = async (req, req) => {
-//   const body = req.body;
+export const UploadPhoto = async (req, res) => {
+  const { image } = req.body;
 
-//   try {
-//     const newImage = await User.create;
-//   } catch (error) {}
-// };
+  let imageUrl;
+
+  try {
+    const uploadResponse = await cloudinary.uploader.upload(image);
+    imageUrl = uploadResponse.secure_url;
+
+    await User.updateOne(
+      { _id: req.user._id },
+      { $set: { profilepic: imageUrl } }
+    );
+
+    return res.status(200).json({ url: imageUrl });
+  } catch (error) {
+    console.log(error);
+    return res.status(400);
+  }
+};
