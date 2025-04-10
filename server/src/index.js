@@ -10,13 +10,14 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
-app.use(cors());
+// app.use(cors());
 
-// app.use(
-//   cors({
-//     origin: ["http://localhost:5173/", "http://yourapp.com/"],
-//   })
-// );
+app.use(
+  cors({
+    origin: ["http://localhost:5173/", "https://social-me-navy.vercel.app/"],
+    credentials: true,
+  })
+);
 
 app.use(express.json({ limit: "50mb" }));
 
