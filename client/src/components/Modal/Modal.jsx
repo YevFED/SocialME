@@ -3,6 +3,7 @@ import styles from "./Modal.module.scss";
 import { IoMdClose } from "react-icons/io";
 import { useAuthStore } from "../../store/useAuthStore";
 import { BiLoaderAlt } from "react-icons/bi";
+import { FaCamera } from "react-icons/fa";
 
 import userImage from "../../assets/userImage.png";
 
@@ -11,6 +12,7 @@ const Modal = ({ openModal, setOpenModal }) => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [image, setImage] = useState("");
+  const [hover, setHover] = useState(false);
 
   const imageRef = useRef();
 
@@ -63,14 +65,22 @@ const Modal = ({ openModal, setOpenModal }) => {
           <div
             className={styles.profilePhoto}
             onClick={() => imageRef.current.click()}
+            onMouseOver={() => setHover(true)}
+            onMouseOut={() => setHover(false)}
           >
             {isLoadingPhoto ? (
               <BiLoaderAlt fill="black" size={25} className={styles.loading} />
             ) : (
-              <img
-                src={!loading && image ? image : userImage}
-                alt="profilePhoto"
-              />
+              <>
+                <div className={hover ? styles.displayed : styles.notDisplayed}>
+                  <FaCamera fill="white" size={50} />
+                </div>
+
+                <img
+                  src={!loading && image ? image : userImage}
+                  alt="profilePhoto"
+                />
+              </>
             )}
           </div>
 
